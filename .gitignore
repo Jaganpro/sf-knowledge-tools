@@ -40,10 +40,12 @@ pdfs/*.pdf
 data/*.db
 data/knowledge.db
 
-# Keep directory structure
+# Exports (generated output, not for version control)
+exports/
+
+# Keep directory structure for pdfs and data only
 !pdfs/.gitkeep
 !data/.gitkeep
-!exports/**/.gitkeep
 
 # Embedding model cache (large)
 ~/.cache/huggingface/
