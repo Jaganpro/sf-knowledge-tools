@@ -1,0 +1,66 @@
+# sf-knowledge-tools Configuration
+
+embeddings:
+  # Local embedding model (BAAI/bge-large-en-v1.5)
+  # Best local model on MTEB leaderboard for retrieval
+  model: BAAI/bge-large-en-v1.5
+  dimensions: 1024
+  batch_size: 32
+  # Set to true to show download progress
+  show_progress: true
+
+chunking:
+  # Target chunk size in tokens
+  target_size: 1000
+  # Maximum chunk size (hard limit)
+  max_size: 1500
+  # Minimum chunk size (avoid tiny fragments)
+  min_size: 200
+  # Overlap between consecutive chunks
+  overlap: 100
+
+search:
+  # Default number of results to return
+  default_k: 5
+  # Maximum results allowed
+  max_k: 20
+  # Weight for hybrid search (0=keyword only, 1=vector only)
+  hybrid_weight: 0.7
+
+storage:
+  # Database path (relative to project root)
+  database_path: ./data/knowledge.db
+  # PDF storage directory
+  pdf_dir: ./pdfs/
+  # Export directory
+  export_dir: ./exports/
+
+# Skill categories for organizing knowledge
+skills:
+  - name: sf-apex
+    tags: [apex, triggers, testing, governor-limits, bulkification]
+  - name: sf-flow
+    tags: [flow, automation, process-builder, screen-flow]
+  - name: sf-lwc
+    tags: [lwc, lightning, components, javascript, web-components]
+  - name: sf-metadata
+    tags: [metadata, objects, fields, profiles, permission-sets]
+  - name: sf-integration
+    tags: [api, callouts, integration, rest, soap, platform-events]
+  - name: sf-ai-agentforce
+    tags: [agentforce, ai, agents, copilot, einstein]
+  - name: sf-data
+    tags: [soql, data, queries, dml]
+  - name: sf-testing
+    tags: [testing, unit-tests, mocks, test-data]
+  - name: sf-deploy
+    tags: [deployment, ci-cd, devops, scratch-orgs]
+
+# PDF processing settings
+pdf:
+  # Use OCR for pages with less than this many characters
+  ocr_threshold: 100
+  # Maximum pages to process (0 = unlimited)
+  max_pages: 0
+  # Extract images (for future use)
+  extract_images: false

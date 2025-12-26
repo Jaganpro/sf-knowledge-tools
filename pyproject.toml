@@ -1,0 +1,53 @@
+[project]
+name = "sf-knowledge-tools"
+version = "0.1.0"
+description = "Private PDF knowledge extraction and RAG pipeline for sf-skills"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Private" }
+authors = [
+    { name = "Jag Valaiyapathy" }
+]
+
+dependencies = [
+    # PDF Processing
+    "pymupdf>=1.23.0",           # Fast PDF text extraction
+    "pdfplumber>=0.10.0",        # Table extraction
+    "pytesseract>=0.3.10",       # OCR for scanned pages (requires brew install tesseract)
+    "pillow>=10.0.0",            # Image processing for OCR
+
+    # Embeddings
+    "sentence-transformers>=2.2.0",  # Local embeddings (BAAI/bge-large-en-v1.5)
+    "torch>=2.0.0",              # PyTorch backend
+
+    # Storage
+    "sqlite-vec>=0.1.0",         # Vector similarity in SQLite
+
+    # CLI & Utilities
+    "click>=8.0.0",              # CLI framework
+    "rich>=13.0.0",              # Beautiful terminal output
+    "jinja2>=3.0.0",             # Markdown templating
+    "pyyaml>=6.0",               # Config parsing
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+sf-knowledge = "knowledge.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["knowledge"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
